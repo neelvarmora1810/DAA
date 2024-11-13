@@ -1,0 +1,47 @@
+package Project;
+import java.util.Scanner;
+
+public class RecurrenceSolverApp {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Recurrence Solver using Master Theorem");
+        System.out.println("The form of the recurrence is: T(n) = aT(n/b) + O(n^d)");
+        System.out.println("Enter value of 'a' (the number of subproblems): ");
+        int a = scanner.nextInt();
+
+        System.out.println("Enter value of 'b' (the factor by which the problem size is divided): ");
+        int b = scanner.nextInt();
+
+        System.out.println("Enter value of 'd' (the exponent of the cost outside recursion): ");
+        int d = scanner.nextInt();
+
+        // Solve the recurrence using the Master Theorem
+        solveRecurrenceUsingMasterTheorem(a, b, d);
+
+        scanner.close();
+    }
+
+    // Solve recurrence using Master Theorem
+    public static void solveRecurrenceUsingMasterTheorem(int a, int b, int d) {
+        double logResult = Math.log(a) / Math.log(b);
+
+        System.out.println("\nSolving recurrence T(n) = " + a + "T(n/" + b + ") + O(n^" + d + ")");
+        System.out.println("log_b(a) = log(" + a + ") / log(" + b + ") = " + logResult);
+
+        if (logResult > d) {
+            System.out.println("Case 1: T(n) = O(n^" + logResult + ")");
+        } else if (logResult == d) {
+            System.out.println("Case 2: T(n) = O(n^" + d + " log n)");
+        } else {
+            System.out.println("Case 3: T(n) = O(n^" + d + ")");
+        }
+    }
+
+    // Recursion tree visualization (simplified)
+    public static void visualizeRecursionTree(int a, int b, int depth) {
+        System.out.println("\nRecursion Tree Visualization (Depth " + depth + "):\n");
+//        printRecursionTree(a, b, depth, 1, "T(n)");
+    }
+}
